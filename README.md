@@ -44,7 +44,7 @@ class PasswordCredentials extends BaseController {
 }
 ```
 
-> Test
+> Test Result
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/PasswordCredentials
@@ -84,7 +84,7 @@ class ClientCredentials extends BaseController {
 }
 ```
 
-> Test
+> Test Result
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/ClientCredentials
@@ -120,7 +120,7 @@ class RefreshToken extends BaseController {
 }
 ```
 
-> Test
+> Test Result
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/RefreshToken
@@ -160,7 +160,7 @@ class Resource extends BaseController {
 }
 ```
 
-> Test
+> Test Result
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/Resource
