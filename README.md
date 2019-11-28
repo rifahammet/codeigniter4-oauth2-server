@@ -29,6 +29,20 @@ config `DSN`, `hostname`, `username`, `password`, `database`
 * Password Credentials
 
 ```
+class PasswordCredentials extends CI_Controller {
+    function __construct(){
+        @session_start();
+        parent::__construct();
+        $this->load->library("Server", "server");
+        $this->server->password_credentials();	//credentials check here
+    }
+    function index(){
+        //code here
+    }
+}
+```
+
+```
 URL : http://localhost/codeigniter4-oauth2-server/public/PasswordCredentials
 Body :
     {
@@ -46,21 +60,23 @@ Sample Result :
         "scope": "userinfo file node cloud share",
         "refresh_token": "800da3ce68c22433391d35ff86400316e00ac904"
     }
+```
 
-class PasswordCredentials extends CI_Controller {
+* Client Credentials
+
+```
+class ClientCredentials extends CI_Controller {
     function __construct(){
         @session_start();
         parent::__construct();
         $this->load->library("Server", "server");
-        $this->server->password_credentials();	//credentials check here
-    }
+        $this->server->client_credentials(); //credentials check here
+    }    
     function index(){
-        //code here
+    	//code here
     }
 }
 ```
-
-* Client Credentials
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/ClientCredentials
@@ -77,21 +93,22 @@ Sample Result :
         "token_type": "Bearer",
         "scope": "file node userinfo cloud"
     }
+```
 
-class ClientCredentials extends CI_Controller {
+* Refresh Token
+
+```    
+class RefreshToken extends CI_Controller {
     function __construct(){
         @session_start();
         parent::__construct();
         $this->load->library("Server", "server");
-        $this->server->client_credentials(); //credentials check here
     }    
     function index(){
-    	//code here
+        $this->server->refresh_token(); //refresh token
     }
 }
 ```
-
-* Refresh Token
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/RefreshToken
@@ -110,20 +127,24 @@ Sample Result :
         "scope": "userinfo file node cloud share",
         "refresh_token": "147263c7a428f8ecbe9c3a6e919ca07b17cc10fa"
     }
-    
-class RefreshToken extends CI_Controller {
+```
+
+* Get resource by OAuth2.0 authorize.
+
+```  
+class Resource extends CI_Controller {
     function __construct(){
         @session_start();
         parent::__construct();
         $this->load->library("Server", "server");
-    }    
-    function index(){
-        $this->server->refresh_token(); //refresh token
+    	$this->server->require_scope("userinfo cloud file node");//you can require scope here 
+    }
+    public function index(){
+        //resource api controller
+        echo json_encode(array('success' => true, 'message' => 'You accessed my APIs!'));
     }
 }
 ```
-
-* Get resource by OAuth2.0 authorize.
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/RefreshToken
@@ -141,19 +162,6 @@ Sample Result :
         "success": true,
         "message": "You accessed my APIs!"
     }
-    
-class Resource extends CI_Controller {
-    function __construct(){
-        @session_start();
-        parent::__construct();
-        $this->load->library("Server", "server");
-    	$this->server->require_scope("userinfo cloud file node");//you can require scope here 
-    }
-    public function index(){
-        //resource api controller
-        echo json_encode(array('success' => true, 'message' => 'You accessed my APIs!'));
-    }
-}
 ```
 
 # Features
