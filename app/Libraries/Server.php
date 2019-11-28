@@ -8,7 +8,7 @@ use OAuth2\Server as Host;
 * @copyright   Copyright(c) 2015
 * @version     15.6.24
 **/
-date_default_timezone_set('Asia/Shanghai');
+date_default_timezone_set('Asia/Jakarta');
 
 class Server{
 	function __construct($config=array()){
