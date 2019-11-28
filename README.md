@@ -9,7 +9,7 @@ Modify https://github.com/grasses/codeigniter-oauth2-server to run on CodeIgnite
 
 > git clone https://github.com/rifahammet/codeigniter4-oauth2-server /path/to/www/root/
 
-2.Config database -> $db['oauth']
+2.Config database -> $db
 
 > cd codeigniter-oauth2-server
 
@@ -29,6 +29,24 @@ config `DSN`, `hostname`, `username`, `password`, `database`
 * Password Credentials
 
 ```
+URL : http://localhost/codeigniter4-oauth2-server/public/PasswordCredentials
+Body :
+    {
+        'grant_type':'password',
+        'client_id':'testclient',
+        'client_secret':'testpass',
+        'username':'user',
+        'password':'pass'
+    }
+Sample Result :                  
+    {
+        "access_token": "94896dfc5328e2bad262c68b8b002f4b5d267132",
+        "expires_in": 3600,
+        "token_type": "Bearer",
+        "scope": "userinfo file node cloud share",
+        "refresh_token": "800da3ce68c22433391d35ff86400316e00ac904"
+    }
+
 class PasswordCredentials extends CI_Controller {
     function __construct(){
         @session_start();
@@ -45,6 +63,21 @@ class PasswordCredentials extends CI_Controller {
 * Client Credentials
 
 ```
+URL : http://localhost/codeigniter4-oauth2-server/public/ClientCredentials
+Body :
+    {
+        'grant_type':'client_credentials',
+        'client_id':'testclient',
+        'client_secret':'testpass'
+    }
+Sample Result :
+    {
+        "access_token": "d336552ef826311aa4b59af01d8acc93cf798dbe",
+        "expires_in": 3600,
+        "token_type": "Bearer",
+        "scope": "file node userinfo cloud"
+    }
+
 class ClientCredentials extends CI_Controller {
     function __construct(){
         @session_start();
@@ -61,6 +94,23 @@ class ClientCredentials extends CI_Controller {
 * Refresh Token
 
 ```
+URL : http://localhost/codeigniter4-oauth2-server/public/RefreshToken
+Body :
+    {
+        'grant_type':'refresh_token',
+        'client_id':'testclient',
+        'client_secret':'testpass',
+        'refresh_token':'800da3ce68c22433391d35ff86400316e00ac904'
+    }
+Sample Result :
+    {
+        "access_token": "3c35be2b8a2b72a4161b39c73cbd54add42cc5ca",
+        "expires_in": 3600,
+        "token_type": "Bearer",
+        "scope": "userinfo file node cloud share",
+        "refresh_token": "147263c7a428f8ecbe9c3a6e919ca07b17cc10fa"
+    }
+    
 class RefreshToken extends CI_Controller {
     function __construct(){
         @session_start();
@@ -76,6 +126,22 @@ class RefreshToken extends CI_Controller {
 * Get resource by OAuth2.0 authorize.
 
 ```
+URL : http://localhost/codeigniter4-oauth2-server/public/RefreshToken
+Auth :
+    - Type = OAuth2
+    - Access Token = 3c35be2b8a2b72a4161b39c73cbd54add42cc5ca
+Body :
+    {
+        'grant_type':'client_credentials',
+        'client_id':'testclient',
+        'client_secret':'testpass'
+    }
+Sample Result :
+    {
+        "success": true,
+        "message": "You accessed my APIs!"
+    }
+    
 class Resource extends CI_Controller {
     function __construct(){
         @session_start();
@@ -89,12 +155,6 @@ class Resource extends CI_Controller {
     }
 }
 ```
-
-* More usage:
-
-for more usage please see: `application/controllers/Test.php`
-
-
 
 # Features
 
