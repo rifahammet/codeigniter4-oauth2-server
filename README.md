@@ -1,5 +1,5 @@
 # codeigniter4-oauth2-server
-- Modify from https://github.com/grasses/codeigniter-oauth2-server to run on CodeIgniter4
+- Modified from https://github.com/grasses/codeigniter-oauth2-server to run on CodeIgniter4
 
 # Installation
 
