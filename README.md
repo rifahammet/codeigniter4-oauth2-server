@@ -28,6 +28,8 @@ config `DSN`, `hostname`, `username`, `password`, `database`
 
 * Password Credentials
 
+> Class
+
 ```
 class PasswordCredentials extends BaseController {
     function __construct(){
@@ -41,6 +43,8 @@ class PasswordCredentials extends BaseController {
     }
 }
 ```
+
+> Test
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/PasswordCredentials
@@ -64,6 +68,8 @@ Sample Result :
 
 * Client Credentials
 
+> Class
+
 ```
 class ClientCredentials extends BaseController {
     function __construct(){
@@ -77,6 +83,8 @@ class ClientCredentials extends BaseController {
     }
 }
 ```
+
+> Test
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/ClientCredentials
@@ -97,6 +105,8 @@ Sample Result :
 
 * Refresh Token
 
+> Class
+
 ```    
 class RefreshToken extends BaseController {
     function __construct(){
@@ -109,6 +119,8 @@ class RefreshToken extends BaseController {
     }
 }
 ```
+
+> Test
 
 ```
 URL : http://localhost/codeigniter4-oauth2-server/public/RefreshToken
@@ -131,6 +143,8 @@ Sample Result :
 
 * Get resource by OAuth2.0 authorize.
 
+> Class
+
 ```  
 class Resource extends BaseController {
     function __construct(){
@@ -146,8 +160,10 @@ class Resource extends BaseController {
 }
 ```
 
+> Test
+
 ```
-URL : http://localhost/codeigniter4-oauth2-server/public/RefreshToken
+URL : http://localhost/codeigniter4-oauth2-server/public/Resource
 Auth :
     - Type = OAuth2
     - Access Token = 3c35be2b8a2b72a4161b39c73cbd54add42cc5ca
