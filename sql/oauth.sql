@@ -21,11 +21,11 @@ USE `oauth`;
 DROP TABLE IF EXISTS `oauth_access_tokens`;
 
 CREATE TABLE `oauth_access_tokens` (
-  `access_token` varchar(40) NOT NULL COMMENT '获取资源的access_token',
-  `client_id` varchar(80) NOT NULL COMMENT '开发者Appid',
-  `user_id` varchar(255) DEFAULT NULL COMMENT '开发者用户id',
-  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '认证的时间date("Y-m-d H:i:s")',
-  `scope` varchar(2000) DEFAULT NULL COMMENT '权限容器',
+  `access_token` varchar(40) NOT NULL COMMENT 'access_token',
+  `client_id` varchar(80) NOT NULL COMMENT 'Appid',
+  `user_id` varchar(255) DEFAULT NULL COMMENT 'id',
+  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'date("Y-m-d H:i:s")',
+  `scope` varchar(2000) DEFAULT NULL COMMENT 'scope',
   PRIMARY KEY (`access_token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -36,12 +36,12 @@ CREATE TABLE `oauth_access_tokens` (
 DROP TABLE IF EXISTS `oauth_authorization_codes`;
 
 CREATE TABLE `oauth_authorization_codes` (
-  `authorization_code` varchar(40) NOT NULL COMMENT '通过Authorization 获取到的code，用于获取access_token',
-  `client_id` varchar(80) NOT NULL COMMENT '开发者Appid',
-  `user_id` varchar(255) DEFAULT NULL COMMENT '开发者用户id',
-  `redirect_uri` varchar(2000) DEFAULT NULL COMMENT '认证后跳转的url',
-  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '认证的时间date("Y-m-d H:i:s")',
-  `scope` varchar(2000) DEFAULT NULL COMMENT '权限容器',
+  `authorization_code` varchar(40) NOT NULL COMMENT 'Authorization code，access_token',
+  `client_id` varchar(80) NOT NULL COMMENT 'Appid',
+  `user_id` varchar(255) DEFAULT NULL COMMENT 'id',
+  `redirect_uri` varchar(2000) DEFAULT NULL COMMENT 'url',
+  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'date("Y-m-d H:i:s")',
+  `scope` varchar(2000) DEFAULT NULL COMMENT 'scope',
   PRIMARY KEY (`authorization_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -52,12 +52,12 @@ CREATE TABLE `oauth_authorization_codes` (
 DROP TABLE IF EXISTS `oauth_clients`;
 
 CREATE TABLE `oauth_clients` (
-  `client_id` varchar(80) NOT NULL COMMENT '开发者AppId',
-  `client_secret` varchar(80) NOT NULL COMMENT '开发者AppSecret',
-  `redirect_uri` varchar(2000) NOT NULL COMMENT '认证后跳转的url',
-  `grant_types` varchar(80) DEFAULT NULL COMMENT '认证的方式，client_credentials、password、refresh_token、authorization_code、authorization_access_token',
-  `scope` varchar(100) DEFAULT NULL COMMENT '权限容器',
-  `user_id` varchar(80) DEFAULT NULL COMMENT '开发者用户id',
+  `client_id` varchar(80) NOT NULL COMMENT 'AppId',
+  `client_secret` varchar(80) NOT NULL COMMENT 'AppSecret',
+  `redirect_uri` varchar(2000) NOT NULL COMMENT 'url',
+  `grant_types` varchar(80) DEFAULT NULL COMMENT 'grant_type',
+  `scope` varchar(100) DEFAULT NULL COMMENT 'scope',
+  `user_id` varchar(80) DEFAULT NULL COMMENT 'user_id',
   PRIMARY KEY (`client_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -72,7 +72,7 @@ insert  into `oauth_clients`(`client_id`,`client_secret`,`redirect_uri`,`grant_t
 DROP TABLE IF EXISTS `oauth_jwt`;
 
 CREATE TABLE `oauth_jwt` (
-  `client_id` varchar(80) NOT NULL COMMENT '开发者用户id',
+  `client_id` varchar(80) NOT NULL COMMENT 'id',
   `subject` varchar(80) DEFAULT NULL,
   `public_key` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`client_id`)
@@ -85,11 +85,11 @@ CREATE TABLE `oauth_jwt` (
 DROP TABLE IF EXISTS `oauth_refresh_tokens`;
 
 CREATE TABLE `oauth_refresh_tokens` (
-  `refresh_token` varchar(40) NOT NULL COMMENT '跟新access_token的token',
-  `client_id` varchar(80) NOT NULL COMMENT '开发者AppId',
-  `user_id` varchar(255) DEFAULT NULL COMMENT '开发者用户id',
-  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '认证的时间date("Y-m-d H:i:s")',
-  `scope` varchar(2000) DEFAULT NULL COMMENT '权限容器',
+  `refresh_token` varchar(40) NOT NULL COMMENT 'refresh_token for access_token',
+  `client_id` varchar(80) NOT NULL COMMENT 'AppId',
+  `user_id` varchar(255) DEFAULT NULL COMMENT 'id',
+  `expires` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'date("Y-m-d H:i:s")',
+  `scope` varchar(2000) DEFAULT NULL COMMENT 'scope',
   PRIMARY KEY (`refresh_token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -100,8 +100,8 @@ CREATE TABLE `oauth_refresh_tokens` (
 DROP TABLE IF EXISTS `oauth_scopes`;
 
 CREATE TABLE `oauth_scopes` (
-  `scope` text COMMENT '容器名字',
-  `is_default` tinyint(1) DEFAULT NULL COMMENT '是否默认拥有，1=>是，0=>否'
+  `scope` text COMMENT 'scope',
+  `is_default` tinyint(1) DEFAULT NULL COMMENT 'Default 1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `oauth_scopes` */
@@ -118,10 +118,10 @@ insert  into `oauth_scopes`(`scope`,`is_default`) values
 DROP TABLE IF EXISTS `oauth_users`;
 
 CREATE TABLE `oauth_users` (
-  `username` varchar(255) NOT NULL COMMENT '内部时候使用的认证用户名',
-  `password` varchar(2000) DEFAULT NULL COMMENT '内部时候使用的认证用户密码',
-  `first_name` varchar(255) DEFAULT NULL COMMENT '内部时候使用',
-  `last_name` varchar(255) DEFAULT NULL COMMENT '内部时候使用',
+  `username` varchar(255) NOT NULL COMMENT 'username',
+  `password` varchar(2000) DEFAULT NULL COMMENT 'password',
+  `first_name` varchar(255) DEFAULT NULL COMMENT 'firstname',
+  `last_name` varchar(255) DEFAULT NULL COMMENT 'lastname',
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
