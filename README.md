@@ -29,7 +29,7 @@ config `DSN`, `hostname`, `username`, `password`, `database`
 * Password Credentials
 
 ```
-class PasswordCredentials extends CI_Controller {
+class PasswordCredentials extends BaseController {
     function __construct(){
         @session_start();
         parent::__construct();
@@ -65,7 +65,7 @@ Sample Result :
 * Client Credentials
 
 ```
-class ClientCredentials extends CI_Controller {
+class ClientCredentials extends BaseController {
     function __construct(){
         @session_start();
         parent::__construct();
@@ -98,7 +98,7 @@ Sample Result :
 * Refresh Token
 
 ```    
-class RefreshToken extends CI_Controller {
+class RefreshToken extends BaseController {
     function __construct(){
         @session_start();
         parent::__construct();
@@ -132,7 +132,7 @@ Sample Result :
 * Get resource by OAuth2.0 authorize.
 
 ```  
-class Resource extends CI_Controller {
+class Resource extends BaseController {
     function __construct(){
         @session_start();
         parent::__construct();
